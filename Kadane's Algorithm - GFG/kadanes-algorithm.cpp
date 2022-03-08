@@ -13,25 +13,27 @@ class Solution{
         
         // Your code here
         long long int cursum = 0;
-        long long int maxsum = 0;
-        long long int maxelement = INT_MIN;
+        long long int maxsum = INT_MIN;
+      //  long long int maxelement = INT_MIN;
         for(int i=0;i<n;i++){
             cursum+=arr[i];
-            if(cursum<0){
-                cursum=0;
-            }
+          
             if(maxsum<cursum){
                 maxsum=cursum;
              
-            }   
-            if(arr[i]>maxelement){
-                maxelement = arr[i];
-           
             }
+              if(cursum<0){
+                cursum=0;
+            }
+            // if(arr[i]>maxelement){
+            //     maxelement = arr[i];
+           
+            // }
         }
         
         
-        return maxsum>0 ? maxsum : maxelement;
+        return maxsum;
+        //>0 ? maxsum : maxelement;
     }
 };
 
