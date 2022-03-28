@@ -1,0 +1,1 @@
+at every mid there will always a side left or right which will be sorted.
