@@ -10,16 +10,20 @@ public:
         {
             return l1;
         }
+        if(l1->val > l2->val)
+        swap(l1,l2);
+        ListNode* res=l1;
+        while(l1!=NULL && l2!=NULL)
+        {
+            ListNode* temp = NULL;
+            while( l1!= NULL && l1->val <= l2->val )
+            {   temp= l1;
+                l1=l1->next;
+            }
+            temp->next = l2;
         
-        if(l1->val <= l2->val)
-        {
-            l1->next = mergeTwoLists(l1->next, l2);
-            return l1;
+            swap(l1,l2);
         }
-        else
-        {
-            l2->next = mergeTwoLists(l1, l2->next);
-            return l2;
-        }
+        return res;
     }
 };
