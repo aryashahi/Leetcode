@@ -1,27 +1,72 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-class Solution {
-public:
-    ListNode *detectCycle(ListNode *head) {
+
+ class Solution {
+ public:
+
+ListNode *detectCycle(ListNode *head) {
+	if(!head)
+		return NULL;
+
+	ListNode *fast = head;
+	ListNode *slow = head;
+	bool isCycle = false;
+
+	while(fast && fast -> next)
+	{
+		slow = slow -> next;
+		fast = fast -> next -> next;
+
+		if(slow == fast)
+		{
+			isCycle = true;
+			break;
+		}
+	}
+
+	if(!isCycle)
+		return NULL;
+
+	slow = head;
+	while(slow != fast)
+	{
+		slow = slow -> next;
+		fast = fast -> next;
+	}
+
+	return fast;        
+}
+ };
+
+// class Solution {
+// public:
+//     ListNode *detectCycle(ListNode *head) {
+       
+//         if(!head)
+// 		return NULL;
         
-        unordered_set<ListNode*>s;
-        ListNode* temp = head;
-        while(temp!=NULL){
-            if(s.find(temp)!=s.end()){
-                break;
-            }
-            if(temp->next==NULL)
-                return NULL;
-            s.insert(temp);
-            temp=temp->next;
-        }
-        return temp;
+//         ListNode* slow=head;
+//         ListNode* fast=head;
+//         bool isCycle = false;
         
-    }
-};
+//         while(fast->next && fast){
+          
+//             slow=slow->next;
+//             fast=fast->next->next;
+//               if(slow==fast){
+//                 isCycle=true;
+//                 break;
+//             }
+//         }
+//         if(!isCycle)
+// 		return NULL;
+
+// 	slow = head;
+// 	while(slow != fast)
+// 	{
+// 		slow = slow -> next;
+// 		fast = fast -> next;
+// 	}
+
+// 	return fast;    
+        
+//     }
+// };
