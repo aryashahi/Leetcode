@@ -8,18 +8,14 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-//SLOW and FAST pointer
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-            ListNode* slow = head;
-            ListNode* fast = head;
-        while(fast!=NULL && fast->next!=NULL)
-        {
-            slow=slow->next;
+        ListNode* fast=head,*slow=head;
+        while(fast!=NULL && fast->next!=NULL){
             fast=fast->next->next;
+            slow=slow->next;            
         }
         return slow;
-        
     }
 };
