@@ -7,27 +7,30 @@ class Solution
 {
 public:
 
-void printSums(int ind, int sum, vector<int> &arr,vector<int> &ans){
-    if(ind==arr.size()){
-        ans.push_back(sum);
-        return;
-    }
-    
-    
-    sum+=arr[ind];
-    printSums(ind+1,sum,arr,ans);
-    sum-=arr[ind];
-    printSums(ind+1,sum,arr,ans);
-    
-}
- 
+   void helper(vector<int>arr,int N, int i, vector<int> &ans, int sum){
+        if(i>=N){
+            ans.push_back(sum);
+            return;
+        }
+        helper(arr,N,i+1,ans, sum); //not pick
+        sum+=arr[i];
+        helper(arr,N,i+1,ans,sum);
+        }
+
+
     vector<int> subsetSums(vector<int> arr, int N)
     {
-        int sum=0;
         vector<int> ans;
-        printSums(0,sum,arr,ans);
-        return ans;
+        
+        int index=0;
+        helper(arr,N,index,ans,0);
+        return ans;// Write Your Code here
     }
+    
+    
+        
+        
+    
 };
 
 // { Driver Code Starts.
